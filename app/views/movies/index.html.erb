@@ -1,0 +1,15 @@
+
+<ul>
+<% @movies.each do |movie| %>
+    <li>
+    <strong><%= movie.title %></strong> (<%= movie.rating %>):
+    <%= number_to_currency(movie.total_gross, precision: 0) %>
+  </li>
+  <p>
+    <%= movie.description %>
+  </p>
+  <p>
+    <%= "Release Date: #{movie.released_on.to_formatted_s(:long_ordinal)}"  %>
+  </p>
+<% end %>   
+</ul>
