@@ -1,0 +1,18 @@
+<%= form_with(model: @movie, local: true) do |m| %>
+    <%= m.label :title%>
+    <%= m.text_field :title%>
+
+    <%= m.label :description%>
+    <%= m.text_field :description%>
+
+    <%= m.label :rating%>
+    <%= m.text_field :rating%>
+
+    <%= m.label :released_on%>
+    <%= m.date_field :released_on %>
+
+    <%= m.label :total_gross%>
+    <%= m.number_field :total_gross%>
+
+    <%= m.submit%>
+<% end %>
