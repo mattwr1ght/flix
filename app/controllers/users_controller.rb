@@ -21,7 +21,30 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit
+        @user = get_user
+    end
+
+    def update
+        @user = get_user
+        if @user.update(user_params)
+            redirect_to @user, notice: "Account updated"
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @user = get_user
+        @user.destroy
+        redirect_to users_url, alert: "Account successfully deleted!"
+    end
+
     private
+
+    def get_user
+        User.find(params[:id])
+    end
 
     def user_params
         params.require(:user)
