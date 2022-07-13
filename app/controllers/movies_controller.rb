@@ -5,15 +5,15 @@ class MoviesController < ApplicationController
     end
 
     def show
-        @movie = Movie.find(params[:id])
+        @movie = get_movie
     end
 
     def edit
-        @movie = Movie.find(params[:id])
+        @movie = get_movie
     end
 
     def update
-        @movie = Movie.find(params[:id])
+        @movie = get_movie
         if @movie.update(movie_params)
             redirect_to @movie, notice: "Movie successfully updated!"
         else
@@ -35,12 +35,16 @@ class MoviesController < ApplicationController
     end
 
     def destroy
-        @movie = Movie.find(params[:id])
+        @movie = get_movie
         @movie.destroy
         redirect_to movies_url, alert: "Movie successfully deleted!"
     end
 
     private
+
+    def get_movie
+        Movie.find(params[:id])
+    end
 
     def movie_params
         params.require(:movie)
