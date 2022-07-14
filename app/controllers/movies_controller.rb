@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
 
     def show
         @movie = get_movie
+        @fans = @movie.fans
     end
 
     def edit
