@@ -9,5 +9,23 @@
                             data: { confirm: "Permanently delete account?" },
                             class: "button delete"%>
     </div>
+    <div class="actions"> 
+      <% @user.reviews.each do |review| %>
+        <div class="review">
+          <div class="details">
+            <span class="title">
+              <%= link_to review.movie.title, review.movie %>
+            </span>
+            <%= render "shared/stars", percent: review.stars_as_percent %>
+            <span class="date">
+              <%= time_ago_in_words(review.created_at) %> ago
+            </span>
+            <p>
+              <%= review.comment %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </section>
