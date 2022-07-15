@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
     def show
         @movie = get_movie
         @fans = @movie.fans
+        @genres = @movie.genres.order(:name)
         if current_user
             @favorite = current_user.favorites.find_by(movie: @movie)
         end
@@ -54,6 +55,6 @@ class MoviesController < ApplicationController
 
     def movie_params
         params.require(:movie)
-            .permit(:title, :description, :rating, :released_on, :total_gross, :director, :image_file_name, :duration)
+            .permit(:title, :description, :rating, :released_on, :total_gross, :director, :image_file_name, :duration, genre_ids: [])
     end
 end
