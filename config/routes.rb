@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users
 
   get "/signup", to: 'users#new', as: 'signup'
+  get "movies/filter/:filter" =>  'movies#index', as: :filtered_movies
 
   resource :session, only: [:new, :create, :destroy]
 
