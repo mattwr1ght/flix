@@ -17,9 +17,9 @@ class Movie < ApplicationRecord
       }
     validates :rating, inclusion: { in: RATINGS }
 
-    def self.released
-        where("released_on < ?", Time.now).order(released_on: :desc)
-    end
+    scope :released, -> { where("released_on < ?", Time.now).order(released_on: :desc) }
+    scope :upcoming, -> { where("released_on > ?", Time.now).order(released_on: :asc) }
+    scope :recent, -> (max=5) { released.limit(max) }
 
     def average_stars
         reviews.average(:stars) || 0.0
