@@ -13,8 +13,8 @@
     <%= m.label :duration %>
     <%= m.text_field :duration %>
 
-    <%= m.label :image_file_name %>
-    <%= m.text_field :image_file_name %>
+    <%= m.label :main_image %>
+    <%= m.file_field :main_image %>
 
     <%= m.label :rating%>
     <%= m.select :rating, Movie::RATINGS, prompt: "Pick one" %>
